@@ -1,0 +1,54 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-serif: "Noto Serif", serif;
+  --font-sans: "Plus Jakarta Sans", sans-serif;
+
+  --color-background: #fbf9f9;
+  --color-on-background: #1b1c1c;
+  --color-primary: #171818;
+  --color-on-primary: #ffffff;
+  --color-secondary: #536251;
+  --color-on-secondary: #ffffff;
+  --color-surface: #fbf9f9;
+  --color-on-surface: #1b1c1c;
+  --color-outline: #747878;
+  --color-outline-variant: #c4c7c7;
+
+  --spacing-unit: 4px;
+  --spacing-margin-mobile: 1.5rem;
+  --spacing-margin-desktop: 5rem;
+}
+
+@layer base {
+  body {
+    @apply bg-background text-on-background font-sans;
+  }
+}
+
+.font-serif {
+  font-family: var(--font-serif);
+}
+
+.tracking-tighter {
+  letter-spacing: -0.05em;
+}
+
+.tracking-widest {
+  letter-spacing: 0.2em;
+}
+
+@layer utilities {
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+
+.paper-shadow {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+}
