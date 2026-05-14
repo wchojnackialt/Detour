@@ -9,6 +9,16 @@ export interface Place {
   imageUrl?: string;
   isSaved?: boolean;
   category?: string; // e.g. "JEDZENIE", "KULTURA"
+  // Authenticity Signals
+  localReviewPercent?: number;
+  hasOwnerResponse?: boolean;
+  regularsPresent?: boolean;
+  isAuthenticVerified?: boolean;
+  // Practical Info
+  openingHours?: string;
+  reservationRequired?: boolean;
+  priceLevel?: number; // 1-4
+  suitabilityTags?: string[]; // e.g. ["Wieczór", "Solo", "Relaks"]
 }
 
 export interface CityGroup {

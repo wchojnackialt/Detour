@@ -17,7 +17,7 @@ export default function ExploreScreen({ onCityClick }: ExploreScreenProps) {
       className="pt-24 pb-32 max-w-screen-xl mx-auto px-6 md:px-margin-desktop"
     >
       <section className="mb-xl">
-        <h1 className="font-serif text-5xl text-primary mb-8 leading-tight">
+        <h1 className="font-serif text-[40px] text-primary mb-8 leading-tight">
           Dokąd następnym razem?
         </h1>
         

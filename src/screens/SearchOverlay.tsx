@@ -27,7 +27,7 @@ export default function SearchOverlay({ onClose, cityContext, onAddPlace, onPlac
     
     if (cityContext) {
       const city = EXPLORE_CITIES.find(c => c.name === cityContext);
-      if (city) {
+      if (city && city.curatedPlaces) {
         city.curatedPlaces.forEach(p => {
           allPlaces.push({ ...p, imageUrl: p.imageUrl });
         });
@@ -66,7 +66,7 @@ export default function SearchOverlay({ onClose, cityContext, onAddPlace, onPlac
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="fixed inset-0 z-[85] bg-background flex flex-col pt-4 overflow-hidden"
+      className="absolute inset-0 z-[85] bg-background flex flex-col pt-4 overflow-hidden"
     >
       <div className="px-6 pb-4 border-b border-primary/10">
         <div className="flex items-center gap-4 mb-8">
@@ -99,7 +99,7 @@ export default function SearchOverlay({ onClose, cityContext, onAddPlace, onPlac
         </div>
       </div>
 
-      <div className="flex-1 overflow-y-auto no-scrollbar px-6 py-10 pb-32">
+      <div className="mobile-content px-6 py-10 pb-32">
         <section className="mb-12">
           <h3 className="text-[10px] uppercase tracking-widest text-outline mb-8">Rekomendacje redakcji</h3>
           <div className="space-y-6">

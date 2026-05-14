@@ -100,7 +100,12 @@ export const EXPLORE_CITIES: CityEditorial[] = [
         location: 'Rzym',
         category: 'KULTURA',
         description: 'Wędrówka krętymi, porośniętymi bluszczem uliczkami, gdzie prawdziwa dusza Rzymu oddycha w każdym ukrytym dziedzińcu i bohemicznym tarasie.',
-        imageUrl: 'https://images.unsplash.com/photo-1525874684015-58379d421a52?w=800&h=600&fit=crop'
+        imageUrl: 'https://images.unsplash.com/photo-1525874684015-58379d421a52?w=800&h=600&fit=crop',
+        localReviewPercent: 82,
+        regularsPresent: true,
+        isAuthenticVerified: true,
+        openingHours: 'Całodobowo',
+        suitabilityTags: ['Relaks', 'Spacer', 'Solo', 'Wieczór']
       },
       {
         id: 'roma2',
@@ -109,7 +114,14 @@ export const EXPLORE_CITIES: CityEditorial[] = [
         location: 'Rzym',
         category: 'JEDZENIE',
         description: 'Instytucja rzymskiego smaku. Skosztuj najlepszego wyboru pecorino, guanciale i win rocznikowych w otoczeniu wyrafinowanej tradycji.',
-        imageUrl: 'https://images.unsplash.com/photo-1541123437800-1bb1317badc2?w=800&h=600&fit=crop'
+        imageUrl: 'https://images.unsplash.com/photo-1541123437800-1bb1317badc2?w=800&h=600&fit=crop',
+        localReviewPercent: 65,
+        hasOwnerResponse: true,
+        isAuthenticVerified: true,
+        openingHours: '12:30 - 23:30',
+        reservationRequired: true,
+        priceLevel: 3,
+        suitabilityTags: ['Lunch', 'Kolacja', 'Koneser']
       },
       {
         id: 'roma3',
@@ -118,7 +130,12 @@ export const EXPLORE_CITIES: CityEditorial[] = [
         location: 'Rzym',
         category: 'PRZYRODA',
         description: 'Zielone serce miasta. Rozległy krajobraz neoklasycystycznych ogrodów, spokojnych stawów i jednych z najpiękniejszych rzeźb na świecie.',
-        imageUrl: 'https://images.unsplash.com/photo-1542332213-31f87348057f?w=800&h=600&fit=crop'
+        imageUrl: 'https://images.unsplash.com/photo-1542332213-31f87348057f?w=800&h=600&fit=crop',
+        localReviewPercent: 45,
+        regularsPresent: true,
+        openingHours: '09:00 - 19:00',
+        priceLevel: 1,
+        suitabilityTags: ['Relaks', 'Przyroda', 'Rodzina', 'Dzień']
       },
       {
         id: 'roma4',
@@ -127,7 +144,13 @@ export const EXPLORE_CITIES: CityEditorial[] = [
         location: 'Rzym',
         category: 'ZAKUPY',
         description: 'Starannie dobrane sanktuarium dla wymagających. Odkryj skrupulatną selekcję współczesnego włoskiego wzornictwa i rzadkich znalezisk vintage.',
-        imageUrl: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800&h=600&fit=crop'
+        imageUrl: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800&h=600&fit=crop',
+        localReviewPercent: 90,
+        hasOwnerResponse: true,
+        isAuthenticVerified: true,
+        openingHours: '10:00 - 19:00',
+        priceLevel: 4,
+        suitabilityTags: ['Design', 'Moda', 'Popołudnie']
       },
       {
         id: 'roma5',

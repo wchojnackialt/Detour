@@ -4,17 +4,17 @@ import Header from './components/Header';
 import BottomNav from './components/BottomNav';
 import ExploreScreen from './screens/ExploreScreen';
 import PlanScreen from './screens/PlanScreen';
+import WhatNowScreen from './screens/WhatNowScreen';
 import SearchOverlay from './screens/SearchOverlay';
 import MenuOverlay from './screens/MenuOverlay';
 import CityDetailsScreen from './screens/CityDetailsScreen';
 import PlaceDetailsScreen from './components/PlaceDetailsScreen';
 import { CityEditorial, Place } from './types';
 import { EXPLORE_CITIES } from './constants';
-
-type Screen = 'explore' | 'plan' | 'profile';
+import { TabType } from './components/BottomNav';
 
 export default function App() {
-  const [activeTab, setActiveTab] = useState<Screen>('explore');
+  const [activeTab, setActiveTab] = useState<TabType>('explore');
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [searchCityContext, setSearchCityContext] = useState<string | undefined>();
   const [searchDayIndex, setSearchDayIndex] = useState<number | undefined>();
@@ -100,6 +100,19 @@ export default function App() {
     }
   };
 
+  const handleAddPlaceFromWhatNow = (place: Place) => {
+    if (activePlanningCity) {
+      const newDays = [...(savedPlaces[activePlanningCity] || [[]])];
+      if (newDays.length === 0) newDays.push([]);
+      
+      // Add to the first day for simplicity in What Now
+      if (!newDays[0].find(p => p.id === place.id)) {
+        newDays[0] = [...newDays[0], place];
+        handleUpdatePlan(activePlanningCity, newDays);
+      }
+    }
+  };
+
   const openSearch = (city?: string, dayIndex?: number) => {
     setSearchCityContext(city);
     setSearchDayIndex(dayIndex);
@@ -107,17 +120,31 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-background relative selection:bg-secondary/20">
-      <Header 
-        onMenuClick={() => setIsMenuOpen(true)}
-        onSearchClick={() => setIsSearchOpen(true)}
-        title={selectedCity ? selectedCity.name : (activeTab === 'plan' ? activePlanningCity : 'Detour')}
-      />
+    <div className="mobile-container">
+      {!selectedCity && !selectedPlace && (
+        <Header 
+          onMenuClick={() => setIsMenuOpen(true)}
+          onSearchClick={() => setIsSearchOpen(true)}
+          title={
+            activeTab === 'profile' ? 'Profil' : 
+            activeTab === 'whatnow' ? 'Co Teraz?' :
+            (activeTab === 'plan' ? activePlanningCity : 'Detour')
+          }
+        />
+      )}
 
-      <main className="pb-16">
+      <main className="mobile-content pt-0">
         <AnimatePresence mode="wait">
           {activeTab === 'explore' && (
             <ExploreScreen key="explore" onCityClick={handleCityClick} />
+          )}
+          {activeTab === 'whatnow' && (
+            <WhatNowScreen 
+              key="whatnow" 
+              currentCity={activePlanningCity}
+              onAddPlace={handleAddPlaceFromWhatNow}
+              onPlaceClick={handlePlaceClick}
+            />
           )}
           {activeTab === 'plan' && (
             <PlanScreen 
@@ -131,7 +158,7 @@ export default function App() {
             />
           )}
           {activeTab === 'profile' && (
-            <div key="profile" className="pt-24 px-6 flex items-center justify-center h-[70vh]">
+            <div key="profile" className="px-6 flex items-center justify-center h-[70vh]">
                <div className="text-center">
                  <h2 className="font-serif text-3xl mb-4 italic">Profil</h2>
                  <p className="text-outline">Zaloguj się, aby zsynchronizować swoje podróże.</p>
@@ -140,22 +167,6 @@ export default function App() {
           )}
         </AnimatePresence>
       </main>
-
-      <BottomNav 
-        activeTab={activeTab} 
-        onTabChange={(tab) => {
-          if (tab === 'explore' && activePlanningCity) {
-            const city = EXPLORE_CITIES.find(c => c.name === activePlanningCity);
-            if (city) {
-              setSelectedCity(city);
-            }
-          } else {
-            setSelectedCity(null);
-          }
-          setActiveTab(tab);
-          setSelectedPlace(null);
-        }} 
-      />
 
       <AnimatePresence>
         {isSearchOpen && (
@@ -201,6 +212,22 @@ export default function App() {
           />
         )}
       </AnimatePresence>
+
+      <BottomNav 
+        activeTab={activeTab} 
+        onTabChange={(tab) => {
+          if (tab === 'explore' && activePlanningCity) {
+            const city = EXPLORE_CITIES.find(c => c.name === activePlanningCity);
+            if (city) {
+              setSelectedCity(city);
+            }
+          } else {
+            setSelectedCity(null);
+          }
+          setActiveTab(tab);
+          setSelectedPlace(null);
+        }} 
+      />
     </div>
   );
 }

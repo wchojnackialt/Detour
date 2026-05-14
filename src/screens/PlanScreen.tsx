@@ -91,38 +91,36 @@ export default function PlanScreen({ cityName, days, onUpdatePlan, onAddDay, onP
       <DragDropContext onDragEnd={onDragEnd}>
         <section className="space-y-16">
           {days.map((dayPlaces, dayIndex) => (
-            <div key={`day-${dayIndex}`} className="grid grid-cols-1 md:grid-cols-12 gap-8 border-t border-primary/5 pt-8">
-              <div className="md:col-span-3">
-                <div className="md:sticky md:top-28">
-                  <div className="flex justify-between items-start mb-2">
-                    <h3 className="font-serif text-4xl text-primary leading-none">Dzień {dayIndex + 1}</h3>
-                    {dayPlaces.length === 0 && (
-                      <button 
-                        onClick={() => removeDay(dayIndex)}
-                        className="text-outline hover:text-red-500 transition-colors p-1"
-                        title="Usuń pusty dzień"
-                      >
-                        <Trash2 className="w-4 h-4" />
-                      </button>
-                    )}
-                  </div>
-                  <p className="text-[10px] text-outline uppercase tracking-widest mb-6">
-                    {dayPlaces.length} MIEJSCA
-                  </p>
-                  
-                  <div className="relative group max-w-md">
-                    <MapPin className="absolute left-0 top-1/2 -translate-y-1/2 w-4 h-4 text-outline" />
+            <div key={`day-${dayIndex}`} className="border-t border-primary/5 pt-8">
+              <div className="mb-8">
+                <div className="flex justify-between items-start mb-2">
+                  <h3 className="font-serif text-4xl text-primary leading-none">Dzień {dayIndex + 1}</h3>
+                  {dayPlaces.length === 0 && (
                     <button 
-                      onClick={() => onOpenSearch(dayIndex)}
-                      className="w-full pl-7 py-2 bg-transparent border-b border-outline/20 group-hover:border-primary transition-colors text-left text-sm text-outline-variant"
+                      onClick={() => removeDay(dayIndex)}
+                      className="text-outline hover:text-red-500 transition-colors p-1"
+                      title="Usuń pusty dzień"
                     >
-                      Dodaj miejsce
+                      <Trash2 className="w-4 h-4" />
                     </button>
-                  </div>
+                  )}
+                </div>
+                <p className="text-[10px] text-outline uppercase tracking-widest mb-6">
+                  {dayPlaces.length} MIEJSCA
+                </p>
+                
+                <div className="relative group max-w-full">
+                  <MapPin className="absolute left-0 top-1/2 -translate-y-1/2 w-4 h-4 text-outline" />
+                  <button 
+                    onClick={() => onOpenSearch(dayIndex)}
+                    className="w-full pl-7 py-2 bg-transparent border-b border-outline/20 group-hover:border-primary transition-colors text-left text-sm text-outline-variant"
+                  >
+                    Dodaj miejsce
+                  </button>
                 </div>
               </div>
 
-              <div className="md:col-span-9">
+              <div className="w-full">
                 <Droppable droppableId={`${dayIndex}`}>
                   {(provided, snapshot) => (
                     <div

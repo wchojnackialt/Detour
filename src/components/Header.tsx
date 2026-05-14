@@ -9,7 +9,7 @@ interface HeaderProps {
 
 export default function Header({ onMenuClick, onSearchClick, title = 'Detour', isTransparent = false }: HeaderProps) {
   return (
-    <header className={`fixed top-0 left-0 right-0 z-50 flex justify-between items-center px-6 py-4 transition-colors duration-300 ${isTransparent ? 'bg-transparent' : 'bg-background border-b border-primary/5'}`}>
+    <header className={`absolute top-0 left-0 right-0 z-50 flex justify-between items-center px-6 py-4 transition-colors duration-300 ${isTransparent ? 'bg-transparent' : 'bg-background border-b border-primary/5'}`}>
       <button onClick={onMenuClick} className="p-1 hover:opacity-70 transition-opacity">
         <Menu className="w-6 h-6 text-primary" />
       </button>

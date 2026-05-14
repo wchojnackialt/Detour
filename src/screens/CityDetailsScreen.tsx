@@ -18,13 +18,16 @@ export default function CityDetailsScreen({ city, onBack, onPlaceClick, isSaved,
   const categories = useMemo(() => {
     const cats = new Set<string>();
     cats.add('WSZYSTKIE');
-    city.curatedPlaces.forEach(place => {
-      if (place.category) cats.add(place.category);
-    });
+    if (city.curatedPlaces) {
+      city.curatedPlaces.forEach(place => {
+        if (place.category) cats.add(place.category);
+      });
+    }
     return Array.from(cats);
   }, [city.curatedPlaces]);
 
   const filteredPlaces = useMemo(() => {
+    if (!city.curatedPlaces) return [];
     if (activeCategory === 'WSZYSTKIE') return city.curatedPlaces;
     return city.curatedPlaces.filter(place => place.category === activeCategory);
   }, [city.curatedPlaces, activeCategory]);
@@ -35,9 +38,9 @@ export default function CityDetailsScreen({ city, onBack, onPlaceClick, isSaved,
       animate={{ opacity: 1, scale: 1 }}
       exit={{ opacity: 0, scale: 1.05 }}
       transition={{ duration: 0.4 }}
-      className="fixed inset-0 z-10 bg-background overflow-y-auto"
+      className="absolute inset-0 z-10 bg-background flex flex-col"
     >
-      <header className="fixed top-0 left-0 right-0 z-20 flex justify-between items-center px-6 py-4 bg-background/80 backdrop-blur-md border-b border-primary/5">
+      <header className="absolute top-0 left-0 right-0 z-20 flex justify-between items-center px-6 py-4 bg-background/80 backdrop-blur-md border-b border-primary/5">
         <button onClick={onBack} className="p-1">
           <ArrowLeft className="w-6 h-6 text-primary" />
         </button>
@@ -49,8 +52,8 @@ export default function CityDetailsScreen({ city, onBack, onPlaceClick, isSaved,
         </button>
       </header>
 
-      <div className="pt-24 pb-32 max-w-3xl mx-auto px-6">
-        <section className="mb-12">
+      <div className="mobile-content pt-24 pb-32 px-6">
+        <section className="mb-12 max-w-3xl mx-auto">
           <span className="text-[10px] uppercase tracking-widest text-outline mb-2 block">MIEJSCE</span>
           <h2 className="font-serif text-6xl text-primary mb-6">{city.name}</h2>
           <p className="font-serif text-2xl italic text-on-surface-variant leading-relaxed">

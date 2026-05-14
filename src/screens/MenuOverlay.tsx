@@ -16,16 +16,16 @@ export default function MenuOverlay({ onClose, onCityClick }: MenuOverlayProps) 
       animate={{ x: 0 }}
       exit={{ x: '-100%' }}
       transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-      className="fixed inset-0 z-[110] flex"
+      className="absolute inset-0 z-[110] flex"
     >
-      <div className="w-[85%] max-w-sm bg-background h-full shadow-2xl flex flex-col px-8 pt-6 pb-12 overflow-y-auto">
+      <div className="w-[85%] max-w-sm bg-background h-full shadow-2xl flex flex-col px-8 pt-6 pb-12 overflow-hidden">
         <div className="flex justify-end mb-16">
           <button onClick={onClose} className="p-1 hover:opacity-70">
             <X className="w-6 h-6 text-primary" />
           </button>
         </div>
 
-        <nav className="flex-1">
+        <nav className="mobile-content">
           <span className="text-[10px] uppercase tracking-widest text-outline mb-12 block">
             The Detour Ethos
           </span>

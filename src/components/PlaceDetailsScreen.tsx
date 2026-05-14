@@ -20,9 +20,9 @@ export default function PlaceDetailsScreen({ place, onBack, isSaved, onToggleSav
       animate={{ x: 0 }}
       exit={{ x: '100%' }}
       transition={{ type: 'spring', damping: 30, stiffness: 300 }}
-      className="fixed inset-0 z-30 bg-background overflow-y-auto"
+      className="absolute inset-0 z-30 bg-background flex flex-col"
     >
-      <header className="fixed top-0 left-0 right-0 z-40 flex justify-between items-center px-6 py-4 bg-background/80 backdrop-blur-md border-b border-primary/5">
+      <header className="absolute top-0 left-0 right-0 z-40 flex justify-between items-center px-6 py-4 bg-background/80 backdrop-blur-md border-b border-primary/5">
         <button onClick={onBack} className="p-1">
           <ArrowLeft className="w-6 h-6 text-primary" />
         </button>
@@ -34,28 +34,28 @@ export default function PlaceDetailsScreen({ place, onBack, isSaved, onToggleSav
         </button>
       </header>
 
-      <div className="relative w-full h-[60vh] md:h-[70vh]">
-        <img 
-          src={place.imageUrl || "https://images.unsplash.com/photo-1555992336-fb0d2919326f?w=1200&h=800&fit=crop"} 
-          alt={place.name}
-          className="w-full h-full object-cover"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-        <div className="absolute bottom-12 left-6 right-6">
-          <span className="bg-primary/20 backdrop-blur-sm text-white px-3 py-1 text-[10px] uppercase tracking-widest rounded-sm">
-            {place.category || place.type.toUpperCase()}
-          </span>
-          <h2 className="font-serif text-5xl md:text-7xl text-white mt-4 mb-2 leading-tight">
-            {place.name}
-          </h2>
-          <div className="flex items-center gap-2 text-white/80 text-sm">
-            <span className="flex items-center gap-1"><Map className="w-4 h-4" /> {place.type}</span>
-            <span>{place.location}, Włochy</span>
+      <div className="mobile-content pb-32">
+        <div className="relative w-full h-[60vh] md:h-[70vh]">
+          <img 
+            src={place.imageUrl || "https://images.unsplash.com/photo-1555992336-fb0d2919326f?w=1200&h=800&fit=crop"} 
+            alt={place.name}
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+          <div className="absolute bottom-12 left-6 right-6">
+            <span className="bg-primary/20 backdrop-blur-sm text-white px-3 py-1 text-[10px] uppercase tracking-widest rounded-sm">
+              {place.category || place.type.toUpperCase()}
+            </span>
+            <h2 className="font-serif text-5xl md:text-7xl text-white mt-4 mb-2 leading-tight">
+              {place.name}
+            </h2>
+            <div className="flex items-center gap-2 text-white/80 text-sm">
+              <span className="flex items-center gap-1"><Map className="w-4 h-4" /> {place.type}</span>
+              <span>{place.location}, Włochy</span>
+            </div>
           </div>
         </div>
-      </div>
 
-      <div className="pb-32">
         <div className="max-w-3xl mx-auto px-6 py-16">
           <blockquote className="font-serif text-3xl md:text-4xl italic text-primary leading-tight border-l-4 border-primary/10 pl-8 mb-16">
             "Miejsce pielgrzymek dla tych, którzy rozumieją, że najprostsze składniki, traktowane z szacunkiem, dają najgłębsze rezultaty."
